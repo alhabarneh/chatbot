@@ -24,8 +24,8 @@ This project is a Node.js application for a restaurant reservation chatbot. The 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/reservation-chatbot.git
-   cd reservation-chatbot
+   git clone git@github.com:alhabarneh/chatbot.git
+   cd chatbot
    ```
 
 2. Install dependencies:
