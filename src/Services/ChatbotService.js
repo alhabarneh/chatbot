@@ -3,6 +3,7 @@ const natural = require('natural');
 const { TrainClassifier } = require('./ClassifierService.js');
 const { createReservation, updateReservation, deleteReservation } = require('./ReservationService.js');
 const { getClassificationHandlers, ReservationQuestions } = require('./Chatbot.util.js');
+const { log } = require('../Services/util.js');
 
 
 class ChatbotService {
@@ -25,7 +26,7 @@ class ChatbotService {
         const classifications = this._classifier.getClassifications(input);
 
         if (classifications.length < 1) {
-            console.log('Sorry, I did not understand that.');
+            log('Sorry, I did not understand that.');
             this.startChatbot();
             return;
         }
@@ -37,12 +38,12 @@ class ChatbotService {
             const confidence = classifications[0].value;
 
             if (confidence < 0.05) {
-                console.log('Sorry, I did not understand that.');
+                log('Sorry, I did not understand that.');
                 this.startChatbot();
                 return;
             }
         } catch (error) {
-            console.log('Sorry, I did not understand that..');
+            log('Sorry, I did not understand that..');
             this.startChatbot();
             return;
         }
@@ -56,7 +57,7 @@ class ChatbotService {
 
         const classificationHandler = classificationHandlers[classification];
         if (! classificationHandler) {
-            console.log('Sorry, I did not understand that...');
+            log('Sorry, I did not understand that...');
             this.startChatbot();
             return;
         }
@@ -78,8 +79,8 @@ class ChatbotService {
         ]).then((answers) => {
             this.handleInput(answers.input);
         }).catch((error) => {
-            console.log('An error occurred. Please try again.');
-            console.log(error);
+            log('An error occurred. Please try again.');
+            log(error);
             this.startChatbot();
         });
     }
@@ -92,17 +93,17 @@ class ChatbotService {
             const confirm = await inquirer.prompt(ReservationQuestions.confirm_make_reservation(name, date, time));
     
             if (! confirm.confirm) {
-                console.log('Operation stopped.\n');
+                log('Operation stopped.\n');
                 return;
             }
     
-            console.log(`Creating a reservation for ${name} on ${date} at ${time}.`);
+            log(`Creating a reservation for ${name} on ${date} at ${time}.`);
 
             const {data: {id}} = await createReservation(answers.name, answers.date, answers.time);
 
-            console.log('Your reservation has been created. Your confirmation number is', id, '.');
+            log('Your reservation has been created. Your confirmation number is', id, '.');
         } catch(error) {
-            console.log('An error occurred. Please try again.');
+            log('An error occurred. Please try again.');
         } finally {
             this.startChatbot();
         }
@@ -116,20 +117,20 @@ class ChatbotService {
             const confirm = await inquirer.prompt(ReservationQuestions.confirm_modify_reservation(name, date, time));
     
             if (! confirm.confirm) {
-                console.log('Operation stopped.\n');
+                log('Operation stopped.\n');
                 return;
             }
 
-            console.log(`Updating your reservation for ${name} on ${date} at ${time}.`);
+            log(`Updating your reservation for ${name} on ${date} at ${time}.`);
 
             await updateReservation(answers.id, answers.name, answers.date, answers.time);
 
-            console.log('Your reservation has been updated.');
+            log('Your reservation has been updated.');
         } catch(error) {
             if (error.response?.data?.message) {
-                console.log(error.response.data.message);
+                log(error.response.data.message);
             } else {
-                console.log('An error occurred. Please try again.');
+                log('An error occurred. Please try again.');
             }
         } finally {
             this.startChatbot();
@@ -142,20 +143,20 @@ class ChatbotService {
             const confirm = await inquirer.prompt(ReservationQuestions.confirm_cancel_reservation(answers.id));
     
             if (! confirm.confirm) {
-                console.log('Operation stopped.\n');
+                log('Operation stopped.\n');
                 return;
             }
     
-            console.log(`Attempting to cancel your reservation...`);
+            log(`Attempting to cancel your reservation...`);
 
             await deleteReservation(answers.id);
 
-            console.log('Your reservation has been cancelled.');
+            log('Your reservation has been cancelled.');
         } catch(error) {
             if (error.response?.data?.message) {
-                console.log(error.response.data.message);
+                log(error.response.data.message);
             } else {
-                console.log('An error occurred. Please try again.');
+                log('An error occurred. Please try again.');
             }
         } finally {
             this.startChatbot();

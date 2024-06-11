@@ -1,5 +1,10 @@
+/**
+ * Check the pattern to ensure it is in the format YYYY-MM-DD
+ * 
+ * @param {string} input 
+ * @returns boolean
+ */
 function isValidDate(input) {
-    // First, check the pattern to ensure it is in the format YYYY-MM-DD
     const regex = /^\d{4}-\d{2}-\d{2}$/;
     if (!input.match(regex)) {
         return false;
@@ -22,7 +27,7 @@ function isValidDate(input) {
         return false; // Invalid date
     }
 
-    // Finally, check if the date object matches the input values (to catch invalid dates like 2021-02-30)
+    // Check if the date object matches the input values
     if (date.getUTCFullYear() !== year || (date.getUTCMonth() + 1) !== month || date.getUTCDate() !== day) {
         return false;
     }
@@ -32,11 +37,23 @@ function isValidDate(input) {
     return date >= currentDate;
 }
 
+/**
+ * Check the pattern to ensure it is in the format HH:MM
+ * 
+ * @param {string} timeString 
+ * @returns boolean
+ */
 function isValidTime(timeString) {
     const regex = /^([01]\d|2[0-3]):([0-5]\d)$/;
     return regex.test(timeString);
 }
 
+/**
+ * Checks if the time is in the future.
+ * 
+ * @param {string} timeString 
+ * @returns boolean
+ */
 function isFutureTime(timeString) {
     // Get the current time
     const now = new Date();
@@ -52,8 +69,18 @@ function isFutureTime(timeString) {
     return hour > currentHour || (hour === currentHour && minute > currentMinute);
 }
 
+/**
+ * This function would make it easier to use a different logging mechanism in the future.
+ * 
+ * @param {string} message 
+ */
+function log(message) {
+    console.log(message);
+}
+
 module.exports = {
     isValidDate,
     isValidTime,
     isFutureTime,
+    log,
 };

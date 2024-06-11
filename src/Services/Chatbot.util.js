@@ -1,4 +1,5 @@
 const { NameStrategy, DateStrategy, TimeStrategy } = require("../Strategy/QuestionStrategies");
+const { log } = require('../Services/util.js');
 
 function getClassificationHandlers(startChatbot, makeReservation, modifyReservation, cancelReservation) {
     return {
@@ -6,17 +7,17 @@ function getClassificationHandlers(startChatbot, makeReservation, modifyReservat
         modify_reservation: modifyReservation,
         cancel_reservation: cancelReservation,
         greet: function () {
-            console.log('Hello! How can I assist you today?');
+            log('Hello! How can I assist you today?');
             startChatbot();
         },
         farewell: function () {
-            console.log('Goodbye! Have a great day!');
+            log('Goodbye! Have a great day!');
         },
         thanks: function () {
-            console.log('You\'re welcome!');
+            log('You\'re welcome!');
         },
         name: function () {
-            console.log('I am your virtual assistant. How can I help you today?');
+            log('I am your virtual assistant. How can I help you today?');
             startChatbot();
         }
     }
