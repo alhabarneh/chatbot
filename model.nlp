@@ -1,0 +1,1077 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ],
+    "nlu": {
+      "log": false
+    },
+    "tag": "nlp",
+    "threshold": 0.5,
+    "autoLoad": true,
+    "autoSave": true,
+    "modelFileName": "model.nlp",
+    "executeActionsBeforeAnswers": false,
+    "calculateSentiment": true
+  },
+  "nluManager": {
+    "settings": {
+      "tag": "nlu-manager",
+      "log": false
+    },
+    "locales": [
+      "en"
+    ],
+    "languageNames": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "locale": "en",
+          "trainByDomain": false,
+          "tag": "domain-manager-en",
+          "nluByDomain": {
+            "default": {
+              "className": "NeuralNlu",
+              "settings": {}
+            }
+          },
+          "useStemDict": true
+        },
+        "stemDict": {
+          "a,make,reserv": {
+            "intent": "make_reservation",
+            "domain": "default"
+          },
+          "a,book,tabl": {
+            "intent": "make_reservation",
+            "domain": "default"
+          },
+          "a,reserv,tabl": {
+            "intent": "make_reservation",
+            "domain": "default"
+          },
+          "a,i,make,reserv,to,want": {
+            "intent": "make_reservation",
+            "domain": "default"
+          },
+          "a,book,i,tabl,to,want": {
+            "intent": "make_reservation",
+            "domain": "default"
+          },
+          "a,i,reserv,tabl,to,want": {
+            "intent": "make_reservation",
+            "domain": "default"
+          },
+          "modifi,my,reserv": {
+            "intent": "modify_reservation",
+            "domain": "default"
+          },
+          "chang,my,reserv": {
+            "intent": "modify_reservation",
+            "domain": "default"
+          },
+          "my,reserv,updat": {
+            "intent": "modify_reservation",
+            "domain": "default"
+          },
+          "i,modifi,my,reserv,to,want": {
+            "intent": "modify_reservation",
+            "domain": "default"
+          },
+          "chang,i,my,reserv,to,want": {
+            "intent": "modify_reservation",
+            "domain": "default"
+          },
+          "i,my,reserv,to,updat,want": {
+            "intent": "modify_reservation",
+            "domain": "default"
+          },
+          "cancel,my,reserv": {
+            "intent": "cancel_reservation",
+            "domain": "default"
+          },
+          "delet,my,reserv": {
+            "intent": "cancel_reservation",
+            "domain": "default"
+          },
+          "cancel,i,my,reserv,to,want": {
+            "intent": "cancel_reservation",
+            "domain": "default"
+          },
+          "delet,i,my,reserv,to,want": {
+            "intent": "cancel_reservation",
+            "domain": "default"
+          },
+          "my,reserv,see": {
+            "intent": "check_reservation",
+            "domain": "default"
+          },
+          "check,my,reserv": {
+            "intent": "check_reservation",
+            "domain": "default"
+          },
+          "my,reserv,view": {
+            "intent": "check_reservation",
+            "domain": "default"
+          },
+          "my,reserv,status": {
+            "intent": "check_reservation",
+            "domain": "default"
+          },
+          "hello": {
+            "intent": "greet",
+            "domain": "default"
+          },
+          "hi": {
+            "intent": "greet",
+            "domain": "default"
+          },
+          "are,how,you": {
+            "intent": "greet",
+            "domain": "default"
+          },
+          "bye": {
+            "intent": "farewell",
+            "domain": "default"
+          },
+          "goodby": {
+            "intent": "farewell",
+            "domain": "default"
+          },
+          "see,you": {
+            "intent": "farewell",
+            "domain": "default"
+          },
+          "go,i,must": {
+            "intent": "farewell",
+            "domain": "default"
+          },
+          "thank,you": {
+            "intent": "thanks",
+            "domain": "default"
+          },
+          "thank": {
+            "intent": "thanks",
+            "domain": "default"
+          },
+          "is,name,what,your": {
+            "intent": "name",
+            "domain": "default"
+          },
+          "are,who,you": {
+            "intent": "name",
+            "domain": "default"
+          }
+        },
+        "intentDict": {
+          "make_reservation": "default",
+          "modify_reservation": "default",
+          "cancel_reservation": "default",
+          "check_reservation": "default",
+          "greet": "default",
+          "farewell": "default",
+          "thanks": "default",
+          "name": "default"
+        },
+        "sentences": [
+          {
+            "domain": "default",
+            "utterance": "make a reservation",
+            "intent": "make_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "book a table",
+            "intent": "make_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "reserve a table",
+            "intent": "make_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "i want to make a reservation",
+            "intent": "make_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "i want to book a table",
+            "intent": "make_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "i want to reserve a table",
+            "intent": "make_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "modify my reservation",
+            "intent": "modify_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "change my reservation",
+            "intent": "modify_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "update my reservation",
+            "intent": "modify_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "i want to modify my reservation",
+            "intent": "modify_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "i want to change my reservation",
+            "intent": "modify_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "i want to update my reservation",
+            "intent": "modify_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "cancel my reservation",
+            "intent": "cancel_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "delete my reservation",
+            "intent": "cancel_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "i want to cancel my reservation",
+            "intent": "cancel_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "i want to delete my reservation",
+            "intent": "cancel_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "see my reservation",
+            "intent": "check_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "check my reservation",
+            "intent": "check_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "view my reservation",
+            "intent": "check_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "my reservation status",
+            "intent": "check_reservation"
+          },
+          {
+            "domain": "default",
+            "utterance": "hello",
+            "intent": "greet"
+          },
+          {
+            "domain": "default",
+            "utterance": "hi",
+            "intent": "greet"
+          },
+          {
+            "domain": "default",
+            "utterance": "how are you",
+            "intent": "greet"
+          },
+          {
+            "domain": "default",
+            "utterance": "bye",
+            "intent": "farewell"
+          },
+          {
+            "domain": "default",
+            "utterance": "goodbye",
+            "intent": "farewell"
+          },
+          {
+            "domain": "default",
+            "utterance": "see you",
+            "intent": "farewell"
+          },
+          {
+            "domain": "default",
+            "utterance": "i must go",
+            "intent": "farewell"
+          },
+          {
+            "domain": "default",
+            "utterance": "thank you",
+            "intent": "thanks"
+          },
+          {
+            "domain": "default",
+            "utterance": "thanks",
+            "intent": "thanks"
+          },
+          {
+            "domain": "default",
+            "utterance": "what is your name",
+            "intent": "name"
+          },
+          {
+            "domain": "default",
+            "utterance": "who are you",
+            "intent": "name"
+          }
+        ],
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "locale": "en",
+              "tag": "nlu-en",
+              "keepStopwords": true,
+              "nonefeatureValue": 1,
+              "nonedeltaMultiplier": 1.2,
+              "spellCheck": false,
+              "spellCheckDistance": 1,
+              "filterZeros": true,
+              "log": true
+            },
+            "features": {
+              "make": 1,
+              "a": 1,
+              "reserv": 1,
+              "book": 1,
+              "tabl": 1,
+              "i": 1,
+              "want": 1,
+              "to": 1,
+              "modifi": 1,
+              "my": 1,
+              "chang": 1,
+              "updat": 1,
+              "cancel": 1,
+              "delet": 1,
+              "see": 1,
+              "check": 1,
+              "view": 1,
+              "status": 1,
+              "hello": 1,
+              "hi": 1,
+              "how": 1,
+              "are": 1,
+              "you": 1,
+              "bye": 1,
+              "goodby": 1,
+              "must": 1,
+              "go": 1,
+              "thank": 1,
+              "what": 1,
+              "is": 1,
+              "your": 1,
+              "name": 1,
+              "who": 1
+            },
+            "intents": {
+              "make_reservation": 1,
+              "modify_reservation": 1,
+              "cancel_reservation": 1,
+              "check_reservation": 1,
+              "greet": 1,
+              "farewell": 1,
+              "thanks": 1,
+              "name": 1
+            },
+            "intentFeatures": {
+              "make_reservation": {
+                "make": 1,
+                "a": 1,
+                "reserv": 1,
+                "book": 1,
+                "tabl": 1,
+                "i": 1,
+                "want": 1,
+                "to": 1
+              },
+              "modify_reservation": {
+                "modifi": 1,
+                "my": 1,
+                "reserv": 1,
+                "chang": 1,
+                "updat": 1,
+                "i": 1,
+                "want": 1,
+                "to": 1
+              },
+              "cancel_reservation": {
+                "cancel": 1,
+                "my": 1,
+                "reserv": 1,
+                "delet": 1,
+                "i": 1,
+                "want": 1,
+                "to": 1
+              },
+              "check_reservation": {
+                "see": 1,
+                "my": 1,
+                "reserv": 1,
+                "check": 1,
+                "view": 1,
+                "status": 1
+              },
+              "greet": {
+                "hello": 1,
+                "hi": 1,
+                "how": 1,
+                "are": 1,
+                "you": 1
+              },
+              "farewell": {
+                "bye": 1,
+                "goodby": 1,
+                "see": 1,
+                "you": 1,
+                "i": 1,
+                "must": 1,
+                "go": 1
+              },
+              "thanks": {
+                "thank": 1,
+                "you": 1
+              },
+              "name": {
+                "what": 1,
+                "is": 1,
+                "your": 1,
+                "name": 1,
+                "who": 1,
+                "are": 1,
+                "you": 1
+              }
+            },
+            "featuresToIntent": {
+              "make": [
+                "make_reservation"
+              ],
+              "a": [
+                "make_reservation"
+              ],
+              "reserv": [
+                "make_reservation",
+                "modify_reservation",
+                "cancel_reservation",
+                "check_reservation"
+              ],
+              "book": [
+                "make_reservation"
+              ],
+              "tabl": [
+                "make_reservation"
+              ],
+              "i": [
+                "make_reservation",
+                "modify_reservation",
+                "cancel_reservation",
+                "farewell"
+              ],
+              "want": [
+                "make_reservation",
+                "modify_reservation",
+                "cancel_reservation"
+              ],
+              "to": [
+                "make_reservation",
+                "modify_reservation",
+                "cancel_reservation"
+              ],
+              "modifi": [
+                "modify_reservation"
+              ],
+              "my": [
+                "modify_reservation",
+                "cancel_reservation",
+                "check_reservation"
+              ],
+              "chang": [
+                "modify_reservation"
+              ],
+              "updat": [
+                "modify_reservation"
+              ],
+              "cancel": [
+                "cancel_reservation"
+              ],
+              "delet": [
+                "cancel_reservation"
+              ],
+              "see": [
+                "check_reservation",
+                "farewell"
+              ],
+              "check": [
+                "check_reservation"
+              ],
+              "view": [
+                "check_reservation"
+              ],
+              "status": [
+                "check_reservation"
+              ],
+              "hello": [
+                "greet"
+              ],
+              "hi": [
+                "greet"
+              ],
+              "how": [
+                "greet"
+              ],
+              "are": [
+                "greet",
+                "name"
+              ],
+              "you": [
+                "greet",
+                "farewell",
+                "thanks",
+                "name"
+              ],
+              "bye": [
+                "farewell"
+              ],
+              "goodby": [
+                "farewell"
+              ],
+              "must": [
+                "farewell"
+              ],
+              "go": [
+                "farewell"
+              ],
+              "thank": [
+                "thanks"
+              ],
+              "what": [
+                "name"
+              ],
+              "is": [
+                "name"
+              ],
+              "your": [
+                "name"
+              ],
+              "name": [
+                "name"
+              ],
+              "who": [
+                "name"
+              ]
+            },
+            "neuralNetwork": {
+              "settings": {
+                "locale": "en",
+                "tag": "nlu-en",
+                "keepStopwords": true,
+                "nonefeatureValue": 1,
+                "nonedeltaMultiplier": 1.2,
+                "spellCheck": false,
+                "spellCheckDistance": 1,
+                "filterZeros": true
+              },
+              "features": [
+                "make",
+                "a",
+                "reserv",
+                "book",
+                "tabl",
+                "i",
+                "want",
+                "to",
+                "modifi",
+                "my",
+                "chang",
+                "updat",
+                "cancel",
+                "delet",
+                "see",
+                "check",
+                "view",
+                "status",
+                "hello",
+                "hi",
+                "how",
+                "are",
+                "you",
+                "bye",
+                "goodby",
+                "must",
+                "go",
+                "thank",
+                "what",
+                "is",
+                "your",
+                "name",
+                "who"
+              ],
+              "intents": [
+                "make_reservation",
+                "modify_reservation",
+                "cancel_reservation",
+                "check_reservation",
+                "greet",
+                "farewell",
+                "thanks",
+                "name"
+              ],
+              "perceptrons": [
+                [
+                  3.819892168045044,
+                  7.645898818969727,
+                  2.297795534133911,
+                  2.2915914058685303,
+                  3.8258330821990967,
+                  -0.20312067866325378,
+                  0.10179286450147629,
+                  0.10179286450147629,
+                  -0.8657048344612122,
+                  -3.044874429702759,
+                  -0.8167909979820251,
+                  -0.6234566569328308,
+                  -0.25755050778388977,
+                  -0.14272962510585785,
+                  -0.16675035655498505,
+                  0,
+                  0,
+                  0,
+                  -0.5238524675369263,
+                  -0.5202991366386414,
+                  -0.15871961414813995,
+                  -0.24560058116912842,
+                  -0.5630452632904053,
+                  -0.5187848210334778,
+                  -0.5177553296089172,
+                  -0.2865389883518219,
+                  -0.2865389883518219,
+                  -0.5187926292419434,
+                  -0.1798338145017624,
+                  -0.1798338145017624,
+                  -0.1798338145017624,
+                  -0.1798338145017624,
+                  -0.05891213193535805,
+                  0.5192634765053608
+                ],
+                [
+                  -0.8063045740127563,
+                  -1.4526803493499756,
+                  1.2159146070480347,
+                  -0.018210045993328094,
+                  -0.622194766998291,
+                  -0.09128936380147934,
+                  0.08499141037464142,
+                  0.08499141037464142,
+                  10.197484970092773,
+                  2.642594337463379,
+                  10.190805435180664,
+                  10.177762031555176,
+                  -6.119807243347168,
+                  -5.831066131591797,
+                  -4.032336711883545,
+                  -3.9990394115448,
+                  -3.948716402053833,
+                  -3.8805935382843018,
+                  -0.13034294545650482,
+                  -0.12971970438957214,
+                  -0.030772607773542404,
+                  -0.046969614923000336,
+                  -0.07171160727739334,
+                  -0.12903015315532684,
+                  -0.12836091220378876,
+                  -0.17384573817253113,
+                  -0.17384573817253113,
+                  -0.12798531353473663,
+                  -0.03369799256324768,
+                  -0.03369799256324768,
+                  -0.03369799256324768,
+                  -0.03369799256324768,
+                  -0.0143823167309165,
+                  0.1332432906299111
+                ],
+                [
+                  -0.923058807849884,
+                  -2.159106731414795,
+                  0.659505307674408,
+                  -0.384524405002594,
+                  -1.0919384956359863,
+                  -0.1648712158203125,
+                  0.10184565931558609,
+                  0.10184565931558609,
+                  -3.1228809356689453,
+                  2.4015004634857178,
+                  -2.995148181915283,
+                  -2.9207253456115723,
+                  11.399914741516113,
+                  11.395270347595215,
+                  -2.853152275085449,
+                  -2.8528897762298584,
+                  -2.8381359577178955,
+                  -2.812143087387085,
+                  -0.024296652525663376,
+                  -0.02327721379697323,
+                  -0.02230054698884487,
+                  -0.0443449467420578,
+                  -0.08919604122638702,
+                  -0.021364860236644745,
+                  -0.02046843245625496,
+                  -0.23357373476028442,
+                  -0.23357373476028442,
+                  -0.0373944453895092,
+                  -0.0152421984821558,
+                  -0.0152421984821558,
+                  -0.0152421984821558,
+                  -0.0152421984821558,
+                  -0.010894126258790493,
+                  -0.21463031157583615
+                ],
+                [
+                  -0.9262783527374268,
+                  -1.9646953344345093,
+                  3.1200761795043945,
+                  -0.030473733320832253,
+                  -0.9540290832519531,
+                  -1.317018747329712,
+                  -1.2041524648666382,
+                  -1.2041524648666382,
+                  -6.249381065368652,
+                  5.053751468658447,
+                  -6.237447738647461,
+                  -6.173064708709717,
+                  -6.0619683265686035,
+                  -5.930724620819092,
+                  7.270178318023682,
+                  8.047027587890625,
+                  7.94648551940918,
+                  7.82882022857666,
+                  -0.29529693722724915,
+                  -0.28455936908721924,
+                  -0.11866889148950577,
+                  -0.21719853579998016,
+                  -5.026468276977539,
+                  -0.26828327775001526,
+                  -0.2585029602050781,
+                  -0.08206459879875183,
+                  -0.08206459879875183,
+                  -0.2976064682006836,
+                  -0.13605061173439026,
+                  -0.13605061173439026,
+                  -0.13605061173439026,
+                  -0.13605061173439026,
+                  -0.05417296662926674,
+                  -1.8527360707205043
+                ],
+                [
+                  -0.31855037808418274,
+                  -1.400140404701233,
+                  -1.862990140914917,
+                  -0.9758303165435791,
+                  -1.0787981748580933,
+                  -1.217909574508667,
+                  -0.08291330188512802,
+                  -0.08291330188512802,
+                  -0.222328320145607,
+                  -1.4386800527572632,
+                  -0.20475341379642487,
+                  -0.1883866786956787,
+                  -0.17498795688152313,
+                  -0.16564127802848816,
+                  -2.504422187805176,
+                  -0.16010893881320953,
+                  -0.15707042813301086,
+                  -0.15362921357154846,
+                  10.662429809570312,
+                  10.652758598327637,
+                  8.52981948852539,
+                  3.082913637161255,
+                  -0.9611742496490479,
+                  -3.385570526123047,
+                  -3.368318557739258,
+                  -1.1263880729675293,
+                  -1.1263880729675293,
+                  -3.389932155609131,
+                  -0.8666859865188599,
+                  -0.8666859865188599,
+                  -0.8666859865188599,
+                  -0.8666859865188599,
+                  -5.452340602874756,
+                  3.46141258326593
+                ],
+                [
+                  -0.4053526818752289,
+                  -1.768624186515808,
+                  -5.8967084884643555,
+                  -1.1436434984207153,
+                  -1.3433983325958252,
+                  2.513363838195801,
+                  -1.255323886871338,
+                  -1.255323886871338,
+                  -0.31309953331947327,
+                  -5.271727561950684,
+                  -0.2458091378211975,
+                  -0.17257200181484222,
+                  -0.0626387968659401,
+                  -0.03873440623283386,
+                  7.196678638458252,
+                  0,
+                  0,
+                  0,
+                  -4.060568809509277,
+                  -4.037327766418457,
+                  -2.1088829040527344,
+                  -4.334696292877197,
+                  2.351915121078491,
+                  9.934709548950195,
+                  9.927279472351074,
+                  3.771819591522217,
+                  3.771819591522217,
+                  -6.270315170288086,
+                  -1.067072868347168,
+                  -1.067072868347168,
+                  -1.067072868347168,
+                  -1.067072868347168,
+                  -2.219550609588623,
+                  4.205622800974242
+                ],
+                [
+                  -0.17495112121105194,
+                  -0.6176764369010925,
+                  -0.8426384329795837,
+                  -0.33795902132987976,
+                  -0.4256291687488556,
+                  -0.46714141964912415,
+                  -0.10703977942466736,
+                  -0.10703977942466736,
+                  -0.10966051369905472,
+                  -0.5631804466247559,
+                  -0.08822478353977203,
+                  -0.08067454397678375,
+                  -0.0595845989882946,
+                  -0.049083124846220016,
+                  -2.112008571624756,
+                  -0.036422111093997955,
+                  -0.029256325215101242,
+                  -0.023187074810266495,
+                  -1.1490201950073242,
+                  -1.144787073135376,
+                  -0.8411781191825867,
+                  -1.8206794261932373,
+                  0.5938630104064941,
+                  -1.138770341873169,
+                  -1.1339118480682373,
+                  -0.35103145241737366,
+                  -0.35103145241737366,
+                  12.763837814331055,
+                  -0.37982693314552307,
+                  -0.37982693314552307,
+                  -0.37982693314552307,
+                  -0.37982693314552307,
+                  -0.9590330123901367,
+                  1.1697969256364185
+                ],
+                [
+                  -0.15900643169879913,
+                  -0.5363656282424927,
+                  -0.7804073691368103,
+                  -0.2639196515083313,
+                  -0.35113009810447693,
+                  -0.31070849299430847,
+                  -0.1078685075044632,
+                  -0.1078685075044632,
+                  -0.10585495829582214,
+                  -0.5094751715660095,
+                  -0.08530240505933762,
+                  -0.07013571262359619,
+                  -0.05028584599494934,
+                  -0.04133656620979309,
+                  -1.4578440189361572,
+                  -0.02841806970536709,
+                  -0.022123543545603752,
+                  -0.016938216984272003,
+                  -0.6003038287162781,
+                  -0.5848288536071777,
+                  -5.122084140777588,
+                  3.7882096767425537,
+                  1.0047844648361206,
+                  -0.4841237962245941,
+                  -0.4760328531265259,
+                  -0.1950451135635376,
+                  -0.1950451135635376,
+                  -1.4465203285217285,
+                  3.457563877105713,
+                  3.457563877105713,
+                  3.457563877105713,
+                  3.457563877105713,
+                  8.914399147033691,
+                  0.46147642384578896
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "intentDomains": {},
+    "extraSentences": [
+      [
+        "en",
+        "make a reservation"
+      ],
+      [
+        "en",
+        "book a table"
+      ],
+      [
+        "en",
+        "reserve a table"
+      ],
+      [
+        "en",
+        "i want to make a reservation"
+      ],
+      [
+        "en",
+        "i want to book a table"
+      ],
+      [
+        "en",
+        "i want to reserve a table"
+      ],
+      [
+        "en",
+        "modify my reservation"
+      ],
+      [
+        "en",
+        "change my reservation"
+      ],
+      [
+        "en",
+        "update my reservation"
+      ],
+      [
+        "en",
+        "i want to modify my reservation"
+      ],
+      [
+        "en",
+        "i want to change my reservation"
+      ],
+      [
+        "en",
+        "i want to update my reservation"
+      ],
+      [
+        "en",
+        "cancel my reservation"
+      ],
+      [
+        "en",
+        "delete my reservation"
+      ],
+      [
+        "en",
+        "i want to cancel my reservation"
+      ],
+      [
+        "en",
+        "i want to delete my reservation"
+      ],
+      [
+        "en",
+        "see my reservation"
+      ],
+      [
+        "en",
+        "check my reservation"
+      ],
+      [
+        "en",
+        "view my reservation"
+      ],
+      [
+        "en",
+        "my reservation status"
+      ],
+      [
+        "en",
+        "hello"
+      ],
+      [
+        "en",
+        "hi"
+      ],
+      [
+        "en",
+        "how are you"
+      ],
+      [
+        "en",
+        "bye"
+      ],
+      [
+        "en",
+        "goodbye"
+      ],
+      [
+        "en",
+        "see you"
+      ],
+      [
+        "en",
+        "i must go"
+      ],
+      [
+        "en",
+        "thank you"
+      ],
+      [
+        "en",
+        "thanks"
+      ],
+      [
+        "en",
+        "what is your name"
+      ],
+      [
+        "en",
+        "who are you"
+      ]
+    ]
+  },
+  "ner": {
+    "settings": {
+      "tag": "ner",
+      "entityPreffix": "%",
+      "entitySuffix": "%"
+    },
+    "rules": {}
+  },
+  "nlgManager": {
+    "settings": {
+      "tag": "nlg-manager"
+    },
+    "responses": {}
+  },
+  "actionManager": {
+    "settings": {
+      "tag": "action-manager"
+    },
+    "actions": {}
+  },
+  "slotManager": {}
+}

@@ -1,20 +1,26 @@
 const inquirer = require('inquirer');
-const natural = require('natural');
+const {NlpManager} = require("node-nlp");
 const { TrainClassifier } = require('./ClassifierService.js');
-const { createReservation, updateReservation, deleteReservation } = require('./ReservationService.js');
+const { createReservation, updateReservation, deleteReservation, checkReservation } = require('./ReservationService.js');
 const { getClassificationHandlers, ReservationQuestions } = require('./Chatbot.util.js');
 const { log } = require('../Services/util.js');
 
 
 class ChatbotService {
-    _classifier = null;
+    _manager = null;
     constructor() {
-        this._classifier = new natural.BayesClassifier();
-        TrainClassifier(this._classifier);
+        this._manager = new NlpManager({ languages: ['en'], nlu: { log: false } });
+        TrainClassifier(this._manager);
     }
 
-    getClassifications(input) {
-        return this._classifier.getClassifications(input);
+    /**
+     * Classifies the input using the NLP manager.
+     * 
+     * @param {string} input 
+     * @returns 
+     */
+    async getClassifications(input) {
+        return this._manager.process('en', input);
     }
 
     /**
@@ -22,28 +28,24 @@ class ChatbotService {
      * 
      * @param {string} input - The user's input to be processed.
      */
-    handleInput(input) {
-        const classifications = this._classifier.getClassifications(input);
-
-        if (classifications.length < 1 || input.trim().length < 1) {
-            log('Sorry, I did not understand that.');
+    async handleInput(input) {
+        if (input.trim().length < 1) {
+            log('Sorry, I did not understand that, please try again.');
             this.startChatbot();
             return;
         }
-        
-        let classification;
+
+        let response;
 
         try {
-            classification = classifications[0].label;
-            const confidence = classifications[0].value;
-
-            if (confidence < 0.05) {
-                log('Sorry, I did not understand that.');
+            response = await this.getClassifications(input);
+            if (! response.intent) {
+                log('Sorry, I did not understand that, please try again...');
                 this.startChatbot();
                 return;
             }
         } catch (error) {
-            log('Sorry, I did not understand that..');
+            log('Sorry, I did not understand that, please try again..');
             this.startChatbot();
             return;
         }
@@ -52,12 +54,13 @@ class ChatbotService {
             this.startChatbot.bind(this), 
             this.makeReservation.bind(this), 
             this.modifyReservation.bind(this), 
-            this.cancelReservation.bind(this)
+            this.cancelReservation.bind(this),
+            this.checkReservation.bind(this)
         );
 
-        const classificationHandler = classificationHandlers[classification];
+        const classificationHandler = classificationHandlers[response.intent];
         if (! classificationHandler) {
-            log('Sorry, I did not understand that...');
+            log('Sorry, I did not understand that, please try again!');
             this.startChatbot();
             return;
         }
@@ -151,6 +154,24 @@ class ChatbotService {
             await deleteReservation(answers.id);
 
             log('Your reservation has been cancelled.');
+        } catch(error) {
+            if (error.response?.data?.message) {
+                log(error.response.data.message);
+            } else {
+                log('An error occurred. Please try again.');
+            }
+        } finally {
+            this.startChatbot();
+        }
+    }
+
+    async checkReservation() {
+        try {
+            const {id} = await inquirer.prompt(ReservationQuestions.check_reservation);
+    
+            log(`Checking your reservation...`);
+            const {name, date, time, party_size, special_requests} = (await checkReservation(id)).data;
+            log(`Reservation found:\nName: ${name}\nDate: ${date}\nTime: ${time}\nParty Size: ${party_size}\nSpecial Requests: ${special_requests}`);
         } catch(error) {
             if (error.response?.data?.message) {
                 log(error.response.data.message);

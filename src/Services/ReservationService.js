@@ -54,8 +54,13 @@ async function deleteReservation(id) {
     });
 }
 
+async function checkReservation(id) {
+    return apiClient.get(`/reservations/${id}`);
+}
+
 module.exports = {
     createReservation,
     updateReservation,
     deleteReservation,
+    checkReservation,
 };

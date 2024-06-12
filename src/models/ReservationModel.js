@@ -52,8 +52,27 @@ const deleteReservation = async (id) => {
     });
 };
 
+const checkReservation = async (id) => {
+    return new Promise((resolve, reject) => {
+        db.get(
+            'SELECT * FROM reservations WHERE id = $1', 
+            [id], 
+            function (err, row) {
+                if (err) {
+                    reject(err);
+                }
+
+                if (!row) {
+                    reject(new Error('Reservation not found.'));
+                }
+                resolve(row);
+            });
+    });
+};
+
 module.exports = {
     createReservation,
     updateReservation,
     deleteReservation,
+    checkReservation,
 };

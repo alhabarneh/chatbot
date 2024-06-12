@@ -1,4 +1,4 @@
-function TrainClassifier(classifier) {
+async function TrainClassifier(manager) {
     const trainingData = [
         { text: 'make a reservation', label: 'make_reservation' },
         { text: 'book a table', label: 'make_reservation' },
@@ -19,8 +19,10 @@ function TrainClassifier(classifier) {
         { text: 'i want to cancel my reservation', label: 'cancel_reservation' },
         { text: 'i want to delete my reservation', label: 'cancel_reservation' },
 
-        { text: 'confirm my reservation', label: 'confirm_reservation' },
-        { text: 'check my reservation', label: 'confirm_reservation' },
+        { text: 'see my reservation', label: 'check_reservation' },
+        { text: 'check my reservation', label: 'check_reservation' },
+        { text: 'view my reservation', label: 'check_reservation' },
+        { text: 'my reservation status', label: 'check_reservation' },
 
         { text: 'hello', label: 'greet' },
         { text: 'hi', label: 'greet' },
@@ -29,6 +31,7 @@ function TrainClassifier(classifier) {
         { text: 'bye', label: 'farewell' },
         { text: 'goodbye', label: 'farewell' },
         { text: 'see you', label: 'farewell' },
+        { text: 'i must go', label: 'farewell' },
 
         { text: 'thank you', label: 'thanks' },
         { text: 'thanks', label: 'thanks' },
@@ -38,10 +41,11 @@ function TrainClassifier(classifier) {
     ];
     
     trainingData.forEach(item => {
-        classifier.addDocument(item.text, item.label);
+        manager.addDocument('en', item.text, item.label);
     });
     
-    classifier.train();
+    await manager.train();
+    manager.save();
 }
 
 module.exports = {

@@ -1,11 +1,12 @@
 const { NameStrategy, DateStrategy, TimeStrategy, PartySizeStrategy, SpecialRequestsStrategy } = require("../Strategy/QuestionStrategies");
 const { log } = require('../Services/util.js');
 
-function getClassificationHandlers(startChatbot, makeReservation, modifyReservation, cancelReservation) {
+function getClassificationHandlers(startChatbot, makeReservation, modifyReservation, cancelReservation, checkReservation) {
     return {
         make_reservation: makeReservation,
         modify_reservation: modifyReservation,
         cancel_reservation: cancelReservation,
+        check_reservation: checkReservation,
         greet: function () {
             log('Hello! How can I assist you today?');
             startChatbot();
@@ -14,11 +15,11 @@ function getClassificationHandlers(startChatbot, makeReservation, modifyReservat
             log('Goodbye! Have a great day!');
         },
         thanks: function () {
-            log('You\'re welcome!');
+            log('You\'re welcome! How can I assist you today?');
             startChatbot();
         },
         name: function () {
-            log('I am your virtual assistant. How can I help you today?');
+            log('I am your virtual assistant, I am here to help manage your reservations\nI can help you book a new reservation, modify your existing one, or even cancel your reservation. How can I help you today?');
             startChatbot();
         }
     }
@@ -60,6 +61,13 @@ const cancelReservationQuestion = buildQuestion('Please provide your reservation
     return true;
 });
 
+const checkReservationQuestion = buildQuestion('Please provide your reservation confirmation number: ', 'id', 'input', (value) => {
+    if (value.length < 1) {
+        return 'Confirmation number cannot be empty.';
+    }
+    return true;
+});
+
 const ReservationQuestions = {
     make_reservation: [
         nameQuestion.getData(),
@@ -78,6 +86,9 @@ const ReservationQuestions = {
     ],
     cancel_reservation: [
         cancelReservationQuestion
+    ],
+    check_reservation: [
+        checkReservationQuestion
     ],
     confirm_make_reservation: (name, date, time, partySize) => [
         buildQuestion(`Please confirm your reservation for ${name} on ${date} at ${time} of ${partySize} person(s)`, 'confirm', 'confirm')

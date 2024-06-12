@@ -13,6 +13,8 @@ router.put('/update', reservationController.updateReservation);
 
 router.put('/cancel', reservationController.deleteReservation);
 
+router.get('/:id', reservationController.checkReservation);
+
 app.use(apiMiddleware);
 app.use(bodyParser.json());
 app.use('/reservations', router);

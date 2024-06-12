@@ -32,8 +32,20 @@ const deleteReservation = async (req, res) => {
     }
 }
 
+const checkReservation = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const reservation = await reservationModel.checkReservation(id);
+        res.status(200).json(reservation);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message });
+    }
+}
+
 module.exports = {
     makeReservation,
     updateReservation,
     deleteReservation,
+    checkReservation,
 };
