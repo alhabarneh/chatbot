@@ -14,9 +14,8 @@ This project is a Node.js application for a restaurant reservation chatbot. The 
 
 ## Prerequisites
 
-- Node.js
+- Node.js 20
 - npm
-- Docker
 
 ## Getting Started
 
@@ -55,27 +54,23 @@ To run the chatbot locally and interact with it through the command line:
 node index.js
 ```
 
-### Using Docker
-
-#### Build the Docker Image
-
-```bash
-docker build -t chatbot .
-```
-
-#### Run the Docker Container
-
-```bash
-docker run -p 3000:3000 chatbot
-```
-
-The application will be accessible at `http://localhost:3000`.
-
 ## API Endpoints
 
 - `POST /reservations/make` - Make a reservation
 - `PUT /reservations/modify` - Modify a reservation
 - `PUT /reservations/cancel` - Cancel a reservation
+- `GET /reservations/:id` - Check a reservation
+
+### API KEY
+The API key should be provided in the .env file for the chatbot app to communicate with the Reservation API. If you like to update the API key with a different one you could use the following code to generate a new strong API key
+```javascript
+const crypto = require('crypto');
+
+// Generate a random 32-byte (256-bit) API key, represented as a hexadecimal string
+const apiKey = crypto.randomBytes(32).toString('hex');
+
+console.log(`Generated API Key: ${apiKey}`);
+```
 
 ## Database Configuration
 
