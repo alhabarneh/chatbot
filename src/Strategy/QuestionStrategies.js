@@ -44,8 +44,30 @@ class TimeStrategy extends QuestionStrategy{
     }
 }
 
+class PartySizeStrategy extends QuestionStrategy{
+    _name = 'partySize';
+    _type = 'input';
+    validate = (value) => {
+        if (isNaN(value) || value < 1) {
+            return 'Party size must be a number greater than 0.';
+        }
+
+        return true;
+    }
+}
+
+class SpecialRequestsStrategy extends QuestionStrategy{
+    _name = 'specialRequests';
+    _type = 'input';
+    validate = (value) => {
+        return true;
+    }
+}
+
 module.exports = {
     NameStrategy,
     DateStrategy,
     TimeStrategy,
+    PartySizeStrategy,
+    SpecialRequestsStrategy,
 };

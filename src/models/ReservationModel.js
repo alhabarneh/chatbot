@@ -1,8 +1,11 @@
 const db = require('../config/database');
 
-const createReservation = async (name, date, time) => {
+const createReservation = async (name, date, time, partySize = 1, specialRequests = '') => {
     return new Promise((resolve, reject) => {
-        db.run('INSERT INTO reservations (name, date, time) VALUES ($1, $2, $3) RETURNING *', [name, date, time], function (err) {
+        db.run(
+            'INSERT INTO reservations (name, date, time, party_size, special_requests) VALUES ($1, $2, $3, $4, $5) RETURNING *', 
+            [name, date, time, partySize, specialRequests], 
+            function (err) {
             if (err) {
                 reject(err);
             }
@@ -12,11 +15,11 @@ const createReservation = async (name, date, time) => {
     });
 };
 
-const updateReservation = async (id, name, newDate, newTime) => {
+const updateReservation = async (id, name, newDate, newTime, partySize = 1, specialRequests = '') => {
     return new Promise((resolve, reject) => {
         db.run(
-            'UPDATE reservations SET name = $1, date = $2, time = $3 WHERE id = $4 RETURNING *', 
-            [name, newDate, newTime, id],
+            'UPDATE reservations SET name = $1, date = $2, time = $3, party_size = $4, special_requests = $5 WHERE id = $6 RETURNING *', 
+            [name, newDate, newTime, partySize, specialRequests, id],
             function (err) {
                 if (err) {
                     reject(err);

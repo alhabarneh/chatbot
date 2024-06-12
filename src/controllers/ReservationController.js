@@ -1,9 +1,9 @@
-const reservationModel = require('../models/ReservationModel.js');
+const reservationModel = require('../Models/ReservationModel.js');
 
 const makeReservation = async (req, res) => {
     try {
-        const { name, date, time } = req.body;
-        const reservation = await reservationModel.createReservation(name, date, time);
+        const { name, date, time, partySize, specialRequests } = req.body;
+        const reservation = await reservationModel.createReservation(name, date, time, partySize, specialRequests);
         res.status(200).json({id: reservation});
     } catch (error) {
         console.log(error);
@@ -13,8 +13,8 @@ const makeReservation = async (req, res) => {
 
 const updateReservation = async (req, res) => {
     try {
-        const { id, name, date, time } = req.body;
-        const reservation = await reservationModel.updateReservation(id, name, date, time);
+        const { id, name, date, time, partySize, specialRequests } = req.body;
+        const reservation = await reservationModel.updateReservation(id, name, date, time, partySize, specialRequests);
         res.status(200).json({id});
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -24,7 +24,6 @@ const updateReservation = async (req, res) => {
 const deleteReservation = async (req, res) => {
     try {
         const { id } = req.body;
-        console.log('id', id);
         const reservation = await reservationModel.deleteReservation(id);
         res.status(200).json({cancelled: true});
     } catch (error) {

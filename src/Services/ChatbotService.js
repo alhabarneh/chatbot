@@ -25,7 +25,7 @@ class ChatbotService {
     handleInput(input) {
         const classifications = this._classifier.getClassifications(input);
 
-        if (classifications.length < 1) {
+        if (classifications.length < 1 || input.trim().length < 1) {
             log('Sorry, I did not understand that.');
             this.startChatbot();
             return;
@@ -88,9 +88,9 @@ class ChatbotService {
     async makeReservation() {
         try {
             const answers = await inquirer.prompt(ReservationQuestions.make_reservation);
-            const { name, date, time } = answers;
+            const { name, date, time, partySize, specialRequests } = answers;
     
-            const confirm = await inquirer.prompt(ReservationQuestions.confirm_make_reservation(name, date, time));
+            const confirm = await inquirer.prompt(ReservationQuestions.confirm_make_reservation(name, date, time, partySize, specialRequests));
     
             if (! confirm.confirm) {
                 log('Operation stopped.\n');
@@ -99,9 +99,9 @@ class ChatbotService {
     
             log(`Creating a reservation for ${name} on ${date} at ${time}.`);
 
-            const {data: {id}} = await createReservation(answers.name, answers.date, answers.time);
+            const {id} = (await createReservation(name, date, time, partySize, specialRequests)).data;
 
-            log('Your reservation has been created. Your confirmation number is', id, '.');
+            log(`Your reservation has been created. Your confirmation number is ${id}.`);
         } catch(error) {
             log('An error occurred. Please try again.');
         } finally {
@@ -112,19 +112,18 @@ class ChatbotService {
     async modifyReservation() {
         try {
             const answers = await inquirer.prompt(ReservationQuestions.modify_reservation);
-            const { name, date, time } = answers;
+            const { name, date, time, partySize, specialRequests, id } = answers;
     
-            const confirm = await inquirer.prompt(ReservationQuestions.confirm_modify_reservation(name, date, time));
+            const confirm = await inquirer.prompt(ReservationQuestions.confirm_modify_reservation(name, date, time, partySize, specialRequests));
     
             if (! confirm.confirm) {
                 log('Operation stopped.\n');
                 return;
             }
 
-            log(`Updating your reservation for ${name} on ${date} at ${time}.`);
+            log(`Updating your reservation for ${name} on ${date} at ${time} party size: ${partySize}.`);
 
-            await updateReservation(answers.id, answers.name, answers.date, answers.time);
-
+            await updateReservation(id, name, date, time, partySize, specialRequests);
             log('Your reservation has been updated.');
         } catch(error) {
             if (error.response?.data?.message) {
