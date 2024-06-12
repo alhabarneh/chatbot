@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a Node.js application for a restaurant reservation chatbot. The chatbot allows customers to make, modify, and cancel reservations through command-line prompts. The project uses SQLite for data storage and is containerized using Docker for easy deployment.
+This project is a Node.js application for a restaurant reservation chatbot. The chatbot allows customers to make, modify, and cancel reservations through command-line prompts. The project uses SQLite for data storage and NLP for data training.
 
 ## Features
 
