@@ -48,6 +48,7 @@ To run the API locally:
 node app.js
 ```
 The application will be accessible at `http://localhost:3000`.
+*You can change the PORT in the .env file, also make sure to change the port number in the BASE_URL variable as well in the .env file.*
 
 To run the chatbot locally and interact with it through the command line:
 ```bash
