@@ -9,6 +9,7 @@ This project is a Node.js application for a restaurant reservation chatbot. The 
 - Make a reservation
 - Modify an existing reservation
 - Cancel a reservation
+- Check a reservation
 - AI Supported Chatbot
 
 ## Prerequisites
@@ -32,6 +33,11 @@ This project is a Node.js application for a restaurant reservation chatbot. The 
 
    ```bash
    npm install
+   ```
+
+3. Migrate the database
+   ```bash
+   node database/migrate.js
    ```
 
 ### Running the Application
